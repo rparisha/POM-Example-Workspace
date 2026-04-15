@@ -8,6 +8,10 @@ export const testData = {
     invalidUser: {
         username: 'studentr',
         password: 'password343',
+    },
+    selectLanguage: {
+        java: 'Java',
+        python: 'Python',
+        any: 'Any'
     }
-
 };
