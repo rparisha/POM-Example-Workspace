@@ -53,5 +53,37 @@ export class InventorySaucePage {
         console.log('Clicked on Back to Products button');
         await expect(this.page).toHaveURL(/.*inventory.html/);
         console.log('Verified URL is inventory page');
-    }          
+        
+    } 
+    
+    async verifySortingFunctionality() {
+        const sortDropdown = await this.page.locator('.product_sort_container');
+        await expect(sortDropdown).toBeVisible();
+        console.log('Located sorting dropdown');
+        //For name A to Z
+        await sortDropdown.selectOption('az');
+        console.log('Selected "Name (A to Z)" sorting option');
+        const firstProductName = await this.page.locator('.inventory_item_name').first().textContent();
+        expect(firstProductName).toBe('Sauce Labs Backpack');
+        console.log('Verified first product is Sauce Labs Backpack after sorting A to Z');
+        //For Name Z to A
+        await sortDropdown.selectOption('za');
+        console.log('Selected "Name (Z to A)" sorting option');
+        const firstProductNameZA = await this.page.locator('.inventory_item_name ').first().textContent();
+        expect(firstProductNameZA).toBe('Test.allTheThings() T-Shirt (Red)');
+        console.log('Verified first product is Test.allTheThings() T-Shirt (Red) after sorting Z to A');
+        //For price Low to High
+        await sortDropdown.selectOption('lohi');
+        console.log('Selected "Price (Loe to High)" sorting option');
+        const firstProductNamePriceLowToHigh = await this.page.locator('.inventory_item_name').first().textContent();
+        expect(firstProductNamePriceLowToHigh).toBe('Sauce Labs Onesie');
+        console.log('Verified first product is Sauce Labs Onsie after sorting Price Low to High');
+        //For price High to Low
+        await sortDropdown.selectOption('hilo');
+        console.log('Selected "Price (High to Low)" sorting option');
+        const firstProductNamePriceHightoLow = await this.page.locator('.inventory_item_name').first().textContent();
+        expect(firstProductNamePriceHightoLow).toBe('Sauce Labs Fleece Jacket');
+        console.log('Verified first product is Sauce Labs Fleece Jacket after sorting Price High to Low');
+
+    }
 }   
