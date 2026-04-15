@@ -12,6 +12,14 @@ export const testData = {
     selectLanguage: {
         java: 'Java',
         python: 'Python',
-        any: 'Any'
-    }
+        any: 'Any',
+    },
+    validSauceUser: {
+        username: 'standard_user',
+        password: 'secret_sauce',
+    },
+    invalidSauceUser: {
+        username: 'standard_user1',
+        password: 'secret_sauce1',
+    }   
 };
